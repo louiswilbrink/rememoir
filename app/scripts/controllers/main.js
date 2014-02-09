@@ -5,9 +5,14 @@ angular.module('rememoirApp')
 
     // Model
     
+    $scope.user = {
+      email: ''
+    };
+    
     $scope.login = {};
     $scope.login.email = '';
     $scope.login.password = '';
+    $scope.login.rememberMe = false;
 
     $scope.panelStatus = '';
     $scope.panel = {
@@ -15,8 +20,6 @@ angular.module('rememoirApp')
       isDanger : false,
       isSuccess : false
     };
-
-    $scope.date = new Date();
 
     // Firebase
 
@@ -33,7 +36,6 @@ angular.module('rememoirApp')
       else if (user) {
         // user authenticated with Firebase
         User.email(user.email);
-        User.isLoggedIn(true);
         setPanelClasses('panel-success');
         $scope.panelStatus = 'Success!  You are logged in as ' + User.email();
         $scope.$digest();
@@ -43,6 +45,7 @@ angular.module('rememoirApp')
         console.log('no one is logged in on this computer');
         setPanelClasses('panel-default');
         $scope.panelStatus = 'Log in';
+        User.email('');
         $scope.$digest();
       }
     });
@@ -105,4 +108,10 @@ angular.module('rememoirApp')
       auth.logout();
 
     };
+
+    // Event handlers
+
+    $scope.$on('EmailUpdated', function () {
+      $scope.user.email = User.email();
+    });
   }]);
