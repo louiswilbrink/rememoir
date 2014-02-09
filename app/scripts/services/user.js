@@ -9,13 +9,8 @@ angular.module('rememoirApp')
     return {
 
       isLoggedIn: function (a) { 
-        if (a) { 
-          isLoggedIn = a;
-          $rootScope.$broadcast('LoginUpdate');
-        }
-        else { 
-          return isLoggedIn; 
-        }
+        if (a) { isLoggedIn = a; }
+        else { return isLoggedIn; }
       },
 
       email: function (a) {

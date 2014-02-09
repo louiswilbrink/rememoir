@@ -3,11 +3,18 @@
 angular.module('rememoirApp')
   .controller('MainCtrl', ['$scope', '$firebase', 'User', function ($scope, $firebase, User) {
 
-    $scope.email = 'mica@gmail.com';
-
     $scope.login = {};
-    $scope.login.email = "";
-    $scope.login.password = "";
+    $scope.login.email = '';
+    $scope.login.password = '';
+
+    $scope.panelStatus = '';
+    $scope.panel = {
+      isDefault : true,
+      isDanger : false,
+      isSuccess : false
+    };
+
+    $scope.date = new Date();
 
     var ref = new Firebase('https://rememoir.firebaseio.com/');
 
@@ -15,22 +22,37 @@ angular.module('rememoirApp')
       if (error) {
         // an error occurred while attempting login
         console.log(error);
-      } else if (user) {
+        $scope.panel = {
+          isDefault : false,
+          isDanger : true,
+          isSuccess : false
+        };
+        $scope.panelStatus = "User does not exist";
+        $scope.$digest();
+      } 
+      else if (user) {
         // user authenticated with Firebase
         User.email(user.email);
         User.isLoggedIn(true);
-        console.log(User.email(), User.isLoggedIn());
-        // Not working...
-        //$scope.email = user.email;
-      } else {
+        $scope.panel = {
+          isDefault : false,
+          isDanger : false,
+          isSuccess : true
+        };
+        $scope.panelStatus = 'Success!  You are logged in as ' + User.email();
+        $scope.$digest();
+      } 
+      else {
         // user is logged out
         console.log('no one is logged in on this computer');
+        $scope.panel = {
+          isDefault : true,
+          isDanger : false,
+          isSuccess : false
+        };
+        $scope.panelStatus = 'Log in';
+        $scope.$digest();
       }
-    });
-
-    $scope.$on('LoginUpdate', function () {
-      console.log('$on.LoginUpdate');
-      //$scope.email = User.email();
     });
 
     $scope.signIn = function () {
@@ -40,5 +62,11 @@ angular.module('rememoirApp')
         password: $scope.login.password,
         rememberMe: $scope.login.rememberMe
       });
+    };
+
+    $scope.logout = function () {
+
+      auth.logout();
+
     };
   }]);

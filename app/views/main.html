@@ -1,11 +1,11 @@
 <div class="header">
   <ul class="nav nav-bar pull-right">
-    <li>email: {{ email }}</li>
+    <li style="line-height: 40px;">{{ date | date:'medium' }} | <span><a ng-click="logout()">Logout</a></span></li>
   </ul>
   <h3 class="text-muted">Rememoir.org</h3>
 </div>
-<div class="panel panel-default">
-  <div class="panel-heading">Log in</div>
+<div class="panel" ng-class="{ 'panel-default': panel.isDefault, 'panel-danger' : panel.isDanger, 'panel-success' : panel.isSuccess }">
+  <div class="panel-heading">{{ panelStatus }}</div>
   <div class="panel-body">
     <form class="form-horizontal" role="form">
       <div class="form-group">
