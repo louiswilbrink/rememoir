@@ -3,6 +3,8 @@
 angular.module('rememoirApp')
   .controller('MainCtrl', ['$scope', '$firebase', 'User', function ($scope, $firebase, User) {
 
+    // Model
+    
     $scope.login = {};
     $scope.login.email = '';
     $scope.login.password = '';
@@ -16,17 +18,15 @@ angular.module('rememoirApp')
 
     $scope.date = new Date();
 
+    // Firebase
+
     var ref = new Firebase('https://rememoir.firebaseio.com/');
 
     var auth = new FirebaseSimpleLogin(ref, function(error, user) {
       if (error) {
         // an error occurred while attempting login
         console.log(error);
-        $scope.panel = {
-          isDefault : false,
-          isDanger : true,
-          isSuccess : false
-        };
+        setPanelClasses('panel-danger');
         $scope.panelStatus = "User does not exist";
         $scope.$digest();
       } 
@@ -34,26 +34,62 @@ angular.module('rememoirApp')
         // user authenticated with Firebase
         User.email(user.email);
         User.isLoggedIn(true);
-        $scope.panel = {
-          isDefault : false,
-          isDanger : false,
-          isSuccess : true
-        };
+        setPanelClasses('panel-success');
         $scope.panelStatus = 'Success!  You are logged in as ' + User.email();
         $scope.$digest();
       } 
       else {
         // user is logged out
         console.log('no one is logged in on this computer');
-        $scope.panel = {
-          isDefault : true,
-          isDanger : false,
-          isSuccess : false
-        };
+        setPanelClasses('panel-default');
         $scope.panelStatus = 'Log in';
         $scope.$digest();
       }
     });
+
+    // Methods
+
+    var setPanelClasses = function (panelClass) {
+      switch (panelClass) {
+        case 'panel-default':
+          $scope.panel = {
+            isDefault : true,
+            isDanger : false,
+            isSuccess : false
+          };
+          break;
+        case 'panel-danger':
+          $scope.panel = {
+            isDefault : false,
+            isDanger : true,
+            isSuccess : false
+          };
+          break;
+        case 'panel-success':
+          $scope.panel = {
+            isDefault : false,
+            isDanger : false,
+            isSuccess : true
+          };
+          break;
+        default:
+          $scope.panel = {
+            isDefault : true,
+            isDanger : false,
+            isSuccess : false
+          };
+      }
+    };
+
+    // API
+
+    $scope.getPanelClasses = function () {
+      return { 
+        'panel-default': $scope.panel.isDefault,
+        'panel-danger' : $scope.panel.isDanger, 
+        'panel-success' : $scope.panel.isSuccess
+      };
+    };
 
     $scope.signIn = function () {
 
