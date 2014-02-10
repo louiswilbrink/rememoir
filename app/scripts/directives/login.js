@@ -9,16 +9,16 @@ angular.module('rememoirApp')
 
         // Model
         
-        $scope.login = {};
-        $scope.login.email = '';
-        $scope.login.password = '';
-        $scope.login.rememberMe = false;
-
-        $scope.panelStatus = '';
-        $scope.panel = {
-          isPrimary : true,
-          isDanger : false,
-          isSuccess : false
+        $scope.login = {
+          email: '',
+          password: '',
+          rememberMe: false,
+          panelStatus: '',
+          panel: {
+            isPrimary: true,
+            isDanger: false,
+            isSuccess: false
+          }
         };
 
         // Methods
@@ -26,28 +26,28 @@ angular.module('rememoirApp')
         var setPanelClasses = function (panelClass) {
           switch (panelClass) {
             case 'panel-primary':
-              $scope.panel = {
+              $scope.login.panel = {
                 isPrimary : true,
                 isDanger : false,
                 isSuccess : false
               };
               break;
             case 'panel-danger':
-              $scope.panel = {
+              $scope.login.panel = {
                 isPrimary : false,
                 isDanger : true,
                 isSuccess : false
               };
               break;
             case 'panel-success':
-              $scope.panel = {
+              $scope.login.panel = {
                 isPrimary : false,
                 isDanger : false,
                 isSuccess : true
               };
               break;
             default:
-              $scope.panel = {
+              $scope.login.panel = {
                 isPrimary : true,
                 isDanger : false,
                 isSuccess : false
@@ -57,11 +57,11 @@ angular.module('rememoirApp')
 
         // API
 
-        $scope.getPanelClasses = function () {
+        $scope.login.getPanelClasses = function () {
           return { 
-            'panel-primary': $scope.panel.isPrimary,
-            'panel-danger' : $scope.panel.isDanger, 
-            'panel-success' : $scope.panel.isSuccess
+            'panel-primary': $scope.login.panel.isPrimary,
+            'panel-danger' : $scope.login.panel.isDanger, 
+            'panel-success' : $scope.login.panel.isSuccess
           };
         };
 
@@ -77,25 +77,20 @@ angular.module('rememoirApp')
         // Event Handlers
 
         $scope.$on('LoginError', function (event, error) {
-          console.log('$on.LoginError', error);
           setPanelClasses('panel-danger');
-          $scope.panelStatus = "User does not exist";
+          $scope.login.panelStatus = "User does not exist";
           $scope.$digest();
         });
 
         $scope.$on('LoginSuccess', function (event, user) {
-          console.log('$on.LoginSuccess', user);
-          User.email(user.email);
           setPanelClasses('panel-success');
-          $scope.panelStatus = 'Success!  You are logged in as ' + User.email();
+          $scope.login.panelStatus = 'Success!  You are logged in as ' + User.email();
           $scope.$digest();
         });
 
         $scope.$on('Logout', function (event) {
-          console.log('$on.Logout');
           setPanelClasses('panel-primary');
-          $scope.panelStatus = 'Log in';
-          User.email('');
+          $scope.login.panelStatus = 'Log in';
           $scope.$digest();
         });
       }]
