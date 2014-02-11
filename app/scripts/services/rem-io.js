@@ -36,6 +36,17 @@ angular.module('rememoirApp')
           password: credentials.password,
           rememberMe: credentials.rememberMe
         });
+      },
+
+      createUser: function (email, password) {
+
+        auth.createUser(email, password, function(error, user) {
+          if (!error) {
+            User.email(user.email);
+            console.log('New user created:', user.id, user.email);
+            $rootScope.$broadcast('NewUserCreated');
+          }
+        });
       }
     };
   }]);

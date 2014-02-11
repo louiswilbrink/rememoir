@@ -1,3 +1,4 @@
+<!-- login panel -->
 <div class="panel" ng-class="login.getPanelClasses()" ng-show="login.showLogin">
   <div class="panel-heading">{{ login.panelStatus }}</div>
   <div class="panel-body">
@@ -28,20 +29,21 @@
       </div>
       <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
-          <span><p ng-click="toggleLoginCreateUser()"><a>Not a member? Sign up today.</a></p></span>
+          <span><p ng-click="login.toggleLoginCreateUser()"><a>Not a member? Sign up today.</a></p></span>
         </div>
       </div>
     </form>
   </div>
 </div>
-<div class="panel" ng-class="createUser.getPanelClasses()" ng-show="login.showCreateUser">
+<!-- create user panel -->
+<div class="panel" ng-class="login.getPanelClasses()" ng-show="login.showCreateUser">
   <div class="panel-heading">{{ createUser.panelStatus }}</div>
   <div class="panel-body">
     <form class="form-horizontal" role="form">
       <div class="form-group">
         <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
         <div class="col-sm-10">
-          <input type="email" class="form-control" id="inputEmail3" ng-model="createUser.email" placeholder="Email">
+          <input type="email" class="form-control" id="inputEmail3" ng-model="createUser.email" placeholder="Email" ng-keypress="login.resetPanelStatus()">
         </div>
       </div>
       <div class="form-group">

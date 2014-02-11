@@ -26,7 +26,7 @@ angular.module('rememoirApp')
         $scope.createUser = {
           email: '',
           password: '',
-          panelStatus: 'Sign up with and email address and password',
+          panelStatus: 'Sign up with an email address and password',
           panel: {
             isPrimary: true,
             isDanger: false,
@@ -97,13 +97,27 @@ angular.module('rememoirApp')
 
         $scope.signUp = function () {
 
-          console.log('Signing up:', $scope.createUser.email, $scope.createUser.password);
-          //RemIO.createUser({});
+          if (!$scope.createUser.email) {
+            $scope.createUser.email = $scope.createUser.password = '';
+            $scope.createUser.panelStatus = 'Whoops, something went wrong with the email address.  Try again!';
+            setPanelClasses('panel-danger');
+          }
+          else {
+            RemIO.createUser($scope.createUser.email, $scope.createUser.password);
+          }
         };
 
-        $scope.toggleLoginCreateUser = function () {
+        $scope.login.toggleLoginCreateUser = function () {
           $scope.login.showLogin = false;
           $scope.login.showCreateUser = true;
+        };
+
+        $scope.login.resetPanelStatus = function () {
+          // Remove dangerous panel once fella tries again.
+          if ($scope.createUser.panelStatus !== 'Sign up with an email address and password') {
+            $scope.createUser.panelStatus = 'Sign up with an email address and password',
+            setPanelClasses('panel-primary');
+          }
         };
 
         // Event Handlers
@@ -117,12 +131,21 @@ angular.module('rememoirApp')
         $scope.$on('LoginSuccess', function (event, user) {
           setPanelClasses('panel-success');
           $scope.login.panelStatus = 'Success!  You are logged in as ' + User.email();
+          $scope.login.showLogin = false;
           $scope.$digest();
         });
 
         $scope.$on('Logout', function (event) {
+          $scope.login.email = '';
+          $scope.login.password = '';
+          $scope.login.showLogin = true;
           setPanelClasses('panel-primary');
           $scope.login.panelStatus = 'Log in';
+          $scope.$digest();
+        });
+
+        $scope.$on('NewUserCreated', function (event) {
+          $scope.login.showCreateUser = false;
           $scope.$digest();
         });
       }]

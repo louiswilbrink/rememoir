@@ -24,6 +24,7 @@ angular.module('rememoirApp')
 
         $scope.$on('EmailUpdated', function () {
           $scope.user.email = User.email();
+          $scope.$digest();
         });
       }]
     };
