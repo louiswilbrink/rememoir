@@ -9,17 +9,6 @@ angular.module('rememoirApp')
 
         // Model
         
-        $scope.createUser = {
-          email: '',
-          password: '',
-          panelStatus: 'Sign up with and email address and password',
-          panel: {
-            isPrimary: true,
-            isDanger: false,
-            isSuccess: false
-          }
-        };
-
         // Methods
 
         var setPanelClasses = function (panelClass) {
@@ -56,20 +45,6 @@ angular.module('rememoirApp')
 
         // API
 
-        $scope.createUser.getPanelClasses = function () {
-          return { 
-            'panel-primary': $scope.createUser.panel.isPrimary,
-            'panel-danger' : $scope.createUser.panel.isDanger, 
-            'panel-success' : $scope.createUser.panel.isSuccess
-          };
-        };
-
-        $scope.signUp = function () {
-
-          console.log('Signing up:', $scope.createUser.email, $scope.createUser.password);
-          //RemIO.createUser({});
-
-        };
       }]
     };
   });

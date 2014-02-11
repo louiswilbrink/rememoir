@@ -1,4 +1,4 @@
-<div class="panel" ng-class="login.getPanelClasses()">
+<div class="panel" ng-class="login.getPanelClasses()" ng-show="login.showLogin">
   <div class="panel-heading">{{ login.panelStatus }}</div>
   <div class="panel-body">
     <form class="form-horizontal" role="form">
@@ -28,7 +28,32 @@
       </div>
       <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
-          <span><p><a>Not a member? Sign up today.</a></p></span>
+          <span><p ng-click="toggleLoginCreateUser()"><a>Not a member? Sign up today.</a></p></span>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="panel" ng-class="createUser.getPanelClasses()" ng-show="login.showCreateUser">
+  <div class="panel-heading">{{ createUser.panelStatus }}</div>
+  <div class="panel-body">
+    <form class="form-horizontal" role="form">
+      <div class="form-group">
+        <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+        <div class="col-sm-10">
+          <input type="email" class="form-control" id="inputEmail3" ng-model="createUser.email" placeholder="Email">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+        <div class="col-sm-10">
+          <input type="password" class="form-control" id="inputPassword3" ng-model="createUser.password" placeholder="Password">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <button type="submit" class="btn btn-primary" ng-click="signUp()">Sign me up!</button>
+        </div>
       </div>
     </form>
   </div>

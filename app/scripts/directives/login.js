@@ -13,7 +13,20 @@ angular.module('rememoirApp')
           email: '',
           password: '',
           rememberMe: false,
-          panelStatus: '',
+          panelStatus: 'Log in',
+          panel: {
+            isPrimary: true,
+            isDanger: false,
+            isSuccess: false
+          },
+          showLogin: true,
+          showCreateUser: false
+        };
+
+        $scope.createUser = {
+          email: '',
+          password: '',
+          panelStatus: 'Sign up with and email address and password',
           panel: {
             isPrimary: true,
             isDanger: false,
@@ -65,6 +78,14 @@ angular.module('rememoirApp')
           };
         };
 
+        $scope.createUser.getPanelClasses = function () {
+          return { 
+            'panel-primary': $scope.createUser.panel.isPrimary,
+            'panel-danger' : $scope.createUser.panel.isDanger, 
+            'panel-success' : $scope.createUser.panel.isSuccess
+          };
+        };
+
         $scope.signIn = function () {
 
           RemIO.login({
@@ -72,6 +93,17 @@ angular.module('rememoirApp')
             password: $scope.login.password,
             rememberMe: $scope.login.rememberMe
           });
+        };
+
+        $scope.signUp = function () {
+
+          console.log('Signing up:', $scope.createUser.email, $scope.createUser.password);
+          //RemIO.createUser({});
+        };
+
+        $scope.toggleLoginCreateUser = function () {
+          $scope.login.showLogin = false;
+          $scope.login.showCreateUser = true;
         };
 
         // Event Handlers
