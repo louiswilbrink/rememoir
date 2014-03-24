@@ -5,7 +5,7 @@ angular.module('rememoirApp')
     return {
       templateUrl: 'views/login.html',
       restrict: 'E',
-      controller: ['$scope', 'User', 'RemIO', function ($scope, User, RemIO) {
+      controller: ['$scope', '$location', 'User', 'RemIO', function ($scope, $location, User, RemIO) {
 
         // Model
         
@@ -69,6 +69,14 @@ angular.module('rememoirApp')
         };
 
         // API
+        
+        $scope.onForgetPasswordClicked = function () {
+
+          console.log('onForgetPasswordClicked');
+
+          $location.path('forget-password');
+
+        };
 
         $scope.login.getPanelClasses = function () {
           return { 

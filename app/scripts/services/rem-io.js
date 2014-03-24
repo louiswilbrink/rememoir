@@ -37,6 +37,14 @@ angular.module('rememoirApp')
           rememberMe: credentials.rememberMe
         });
       },
+      
+      resetPassword: function (email) {
+        auth.sendPasswordResetEmail(email, function(error, success) {
+          if (!error) {
+            console.log('Password reset email sent successfully');
+          }
+        });
+      },
 
       createUser: function (email, password) {
 

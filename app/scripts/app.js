@@ -7,6 +7,9 @@ angular.module('rememoirApp', [ 'ngRoute', 'firebase' ])
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
+      .when('/forget-password', {
+        templateUrl: 'views/forget-password-page.html',
+      })
       .otherwise({
         redirectTo: '/'
       });
