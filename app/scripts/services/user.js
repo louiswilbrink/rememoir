@@ -15,6 +15,10 @@ angular.module('rememoirApp')
         else { 
           return email; 
         }
+      },
+      
+      getPassword: function () {
+        return password;
       }
     }
   }]);

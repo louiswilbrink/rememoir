@@ -7,11 +7,13 @@ angular.module('rememoirApp')
       restrict: 'E',
       controller: ['$scope', '$location', 'RemIO', function ($scope, $location, RemIO) {
 
+        // Model.
+        
         $scope.forgetPassword = {
           email: ""
         };
 
-        // API
+        // API.
 
         $scope.onSendResetEmailClicked = function () {
           console.log('Sending reset email to:', $scope.forgetPassword.email);

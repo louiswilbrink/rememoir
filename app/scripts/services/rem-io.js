@@ -46,6 +46,14 @@ angular.module('rememoirApp')
         });
       },
 
+      changePassword: function (oldPassword, newPassword) {
+        auth.changePassword(User.email(), oldPassword, newPassword, function(error, success) {
+          if (!error) {
+            console.log('Password changed successfully');
+          }
+        });
+      },
+
       createUser: function (email, password) {
 
         auth.createUser(email, password, function(error, user) {
