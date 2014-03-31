@@ -10,8 +10,10 @@ angular.module('rememoirApp')
         $rootScope.$broadcast('LoginError', error);
       } 
       else if (user) {
+        console.log('User:', user);
         // user authenticated with Firebase
         User.email(user.email);
+        User.isTemporaryPassword(user.isTemporaryPassword);
         $rootScope.$broadcast('LoginSuccess', user);
       } 
       else {

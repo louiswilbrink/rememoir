@@ -5,13 +5,14 @@ angular.module('rememoirApp')
     return {
       templateUrl: 'views/change-password.html',
       restrict: 'E',
-      controller: ['$scope', 'RemIO', function ($scope, RemIO) {
+      controller: ['$scope', 'RemIO', 'User', function ($scope, RemIO, User) {
 
         $scope.changePassword = {
         
           // Model.
         
-          tempPassword: '',
+          isTemporaryPassword: false,
+          temporaryPassword: '',
           newPassword: '',
           confirmPassword: '',
           title: 'Change Password',
@@ -20,7 +21,7 @@ angular.module('rememoirApp')
 
           onChangePasswordClicked: function () {
             if (this.newPassword === this.confirmPassword) {
-              RemIO.changePassword(this.tempPassword, this.newPassword);
+              RemIO.changePassword(this.temporaryPassword, this.newPassword);
             }
             else {
               console.log('not the same!');
@@ -30,6 +31,12 @@ angular.module('rememoirApp')
 
         // Event-handlers.
         
+        $scope.$on('isTemporaryPasswordUpdated', function () {
+          console.log('$on(isTemporaryPasswordUpdated)');
+          $scope.changePassword.isTemporaryPassword = User.isTemporaryPassword();
+          console.log($scope.changePassword.isTemporaryPassword);
+          $scope.$digest();
+        });
       }]
     };
   });

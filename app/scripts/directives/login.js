@@ -101,6 +101,8 @@ angular.module('rememoirApp')
             password: $scope.login.password,
             rememberMe: $scope.login.rememberMe
           });
+
+          $location.path('home');
         };
 
         $scope.signUp = function () {
@@ -112,6 +114,7 @@ angular.module('rememoirApp')
           }
           else {
             RemIO.createUser($scope.createUser.email, $scope.createUser.password);
+            $location.path('home');
           }
         };
 

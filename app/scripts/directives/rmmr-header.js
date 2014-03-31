@@ -5,7 +5,7 @@ angular.module('rememoirApp')
     return {
       templateUrl: 'views/rmmr-header.html',
       restrict: 'E',
-      controller: ['$scope', 'User', 'RemIO', function ($scope, User, RemIO) {
+      controller: ['$scope', '$location', 'User', 'RemIO', function ($scope, $location, User, RemIO) {
 
         // Model
 
@@ -15,9 +15,11 @@ angular.module('rememoirApp')
 
         // API
 
-        $scope.logout = function () {
+        $scope.user.logout = function () {
 
           RemIO.logout();
+
+          $location.path('/');
         };
 
         // Event handlers

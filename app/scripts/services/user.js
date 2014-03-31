@@ -3,7 +3,7 @@
 angular.module('rememoirApp')
   .service('User', ['$rootScope', function User($rootScope) {
 
-    var email = '';
+    var email, isTemporaryPassword = null;
 
     return {
 
@@ -16,9 +16,16 @@ angular.module('rememoirApp')
           return email; 
         }
       },
-      
-      getPassword: function () {
-        return password;
+
+      isTemporaryPassword: function (a) {
+
+        if (typeof a === 'boolean') {
+          isTemporaryPassword = a;
+          $rootScope.$broadcast('isTemporaryPasswordUpdated');
+        }
+        else {
+          return isTemporaryPassword;
+        }
       }
     }
   }]);
