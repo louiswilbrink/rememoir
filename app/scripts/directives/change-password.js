@@ -32,9 +32,7 @@ angular.module('rememoirApp')
         // Event-handlers.
         
         $scope.$on('isTemporaryPasswordUpdated', function () {
-          console.log('$on(isTemporaryPasswordUpdated)');
           $scope.changePassword.isTemporaryPassword = User.isTemporaryPassword();
-          console.log($scope.changePassword.isTemporaryPassword);
           $scope.$digest();
         });
       }]
