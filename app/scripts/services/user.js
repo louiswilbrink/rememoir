@@ -3,13 +3,19 @@
 angular.module('rememoirApp')
   .service('User', ['$rootScope', function User($rootScope) {
 
-    var email, isTemporaryPassword = null;
+    var userRef, email, isTemporaryPassword = null;
 
     return {
 
-      email: function (a) {
-        if (a !== undefined) { 
-          email = a;
+      createUserRef: function (newEmail) {
+
+        console.log('creating user ref', newEmail);
+      },
+
+      email: function (newEmail) {
+        if (typeof newEmail !== undefined) { 
+          email = newEmail;
+          this.createUserRef(newEmail);
           $rootScope.$broadcast('EmailUpdated');
         }
         else { 
