@@ -12,6 +12,7 @@ angular.module('rememoirApp', ['ngRoute', 'firebase'])
       })
       .when('/home', {
         templateUrl: 'views/home.html',
+        controller: 'HomeCtrl'
       })
       .when('/the-rack', {
         templateUrl: 'views/the-rack.html',

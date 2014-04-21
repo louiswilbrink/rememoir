@@ -1,19 +1,51 @@
 'use strict';
 
 angular.module('rememoirApp')
-  .service('User', ['$rootScope', function User($rootScope) {
+  .service('User', ['$rootScope', '$firebase', function User($rootScope, $firebase) {
 
-    var userRef, email, isTemporaryPassword = null;
+    var userRef,
+        email,
+        isTemporaryPassword,
+        entries = null;
 
     return {
 
-      createUserRef: function (newEmail) {
+      // Send this to backend.
+      getUserId: function (email) {
 
-        console.log('creating user ref', newEmail);
+        return '123';
+      },
+
+      createUserRef: function (email) {
+
+        var userId = this.getUserId(email);
+
+        /*
+        var userRef = new Firebase('https://rememoir.firebaseio.com/users/' + userId);
+
+        userRef.on('value', function (snapshot) {
+          console.log('snapshot: ', snapshot);
+          console.log('full user data: ', snapshot.val());
+        });
+        */
+
+        var userFirebase = $firebase(new Firebase('https://rememoir.firebaseIO.com/users/'/* + userId*/));
+
+        entries = userFirebase.$child('entries');
+
+      },
+
+      entries: function () {
+
+        if (typeof entries === 'undefined') {
+          return 'no entries found';
+        }
+
+        return entries;
       },
 
       email: function (newEmail) {
-        if (typeof newEmail !== undefined) { 
+        if (typeof newEmail !== 'undefined') { 
           email = newEmail;
           this.createUserRef(newEmail);
           $rootScope.$broadcast('EmailUpdated');
