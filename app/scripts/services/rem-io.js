@@ -11,13 +11,14 @@ angular.module('rememoirApp')
       } 
       else if (user) {
         // user authenticated with Firebase
+        
         User.email(user.email);
         User.isTemporaryPassword(user.isTemporaryPassword);
+
         $rootScope.$broadcast('LoginSuccess', user);
       } 
       else {
         // user is logged out
-        User.email('');
         $rootScope.$broadcast('Logout');
       }
     });

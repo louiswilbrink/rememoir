@@ -4,62 +4,88 @@ angular.module('rememoirApp')
   .service('User', ['$rootScope', '$firebase', function User($rootScope, $firebase) {
 
     var userRef,
+        entriesRef,
+        entries,
         email,
-        isTemporaryPassword,
-        entries = null;
+        isTemporaryPassword = null;
 
     return {
 
-      // Send this to backend.
-      getUserId: function (email) {
+      createUser: function (email) {
 
-        return '123';
-      },
+        // Save reference to service object.
+        var _this = this;
 
-      createUserRef: function (email) {
+        // Set firebase reference to all users.
+        // TODO: make $http request for userId.
+        // Avoid ever giving access to users.
+        var usersRef = $firebase(new Firebase('https://rememoir.firebaseIO.com/users'));
 
-        var userId = this.getUserId(email);
+        usersRef.$on('loaded', function (snapshot) {
 
-        /*
-        var userRef = new Firebase('https://rememoir.firebaseio.com/users/' + userId);
+          angular.forEach(snapshot, function (value, key) {
 
-        userRef.on('value', function (snapshot) {
-          console.log('snapshot: ', snapshot);
-          console.log('full user data: ', snapshot.val());
+            // Corresponding user id found.
+            if (value.email === email) {
+
+              // Create user and entries firebase references.
+              // TODO: retrieve url from backend.
+              userRef = $firebase(new Firebase('https://rememoir.firebaseIO.com/users/' + key));
+
+              entriesRef = userRef.$child('entries');
+
+              // Set up callbacks on database value load/changes.
+              entriesRef.$on('loaded', function (snapshot) {
+                _this.entries(snapshot);
+              });
+
+              entriesRef.$on('change', function (snapshot) {
+                _this.entries(snapshot);
+              });
+            }
+          });
         });
-        */
-
-        var userFirebase = $firebase(new Firebase('https://rememoir.firebaseIO.com/users/'/* + userId*/));
-
-        entries = userFirebase.$child('entries');
-
       },
 
-      entries: function () {
+      entries: function (newEntries) {
 
-        if (typeof entries === 'undefined') {
-          return 'no entries found';
+        if (typeof newEntries !== 'undefined') { 
+
+          entries = newEntries;
+
+          $rootScope.$broadcast('entriesUpdated');
+
+          console.log('$broadcast: entriesUpdated', entries);
         }
+        else { 
 
-        return entries;
+          return entries; 
+        }
       },
 
       email: function (newEmail) {
+
         if (typeof newEmail !== 'undefined') { 
           email = newEmail;
-          this.createUserRef(newEmail);
+
+          this.createUser(newEmail);
+
           $rootScope.$broadcast('EmailUpdated');
+
+          console.log('$broadcast: EmailUpdated', email);
         }
         else { 
           return email; 
         }
       },
 
-      isTemporaryPassword: function (a) {
+      isTemporaryPassword: function (newIsTemporaryPassword) {
 
-        if (typeof a === 'boolean') {
-          isTemporaryPassword = a;
+        if (typeof newIsTemporaryPassword === 'boolean') {
+          isTemporaryPassword = newIsTemporaryPassword;
+
           $rootScope.$broadcast('isTemporaryPasswordUpdated');
+          console.log('$broadcast: isTemporaryPasswordUpdated', isTemporaryPassword);
         }
         else {
           return isTemporaryPassword;

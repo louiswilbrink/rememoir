@@ -1,4 +1,22 @@
 <rmmr-header></rmmr-header>
 <profile></profile>
-<div>Put entries here</div>
+
+<!-- Entries -->
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">Write a new entry</div>
+  <div class="panel-body">
+    <textarea class="form-control" rows="3"></textarea>
+  </div>
+
+  <!-- List group -->
+  <ul class="list-group">
+    <li class="list-group-item" ng-repeat="entry in home.entries">
+      <p>{{ entry.date | date: 'medium' }}</p>
+      <p>{{ entry.entry }}</p>
+      <p>isPickMeUp? {{ entry.isPickMeUp }}</p>
+    </li>
+  </ul>
+</div>
+
 <change-password ng-show="changePassword.isTemporaryPassword"></change-password>

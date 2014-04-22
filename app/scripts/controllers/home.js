@@ -1,11 +1,21 @@
 'use strict';
 
 angular.module('rememoirApp')
-  .controller('HomeCtrl', ['User', function ($scope, User) {
+  .controller('HomeCtrl', ['$scope', 'User', function ($scope, User) {
 
     $scope.home = {
 
-      entries: ['Solidtude is the furnace of transformation']
+      // Model.
+      
+      entries: undefined
+
+      // Methods.
 
     };
+
+    // Event-handlers.
+    
+    $scope.$on('entriesUpdated', function () {
+      $scope.home.entries = User.entries();
+    });
   }]);
