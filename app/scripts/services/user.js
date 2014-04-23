@@ -5,7 +5,7 @@ angular.module('rememoirApp')
 
     var userRef,
         entriesRef,
-        entries,
+        //entries,
         email,
         isTemporaryPassword = null;
 
@@ -34,6 +34,9 @@ angular.module('rememoirApp')
 
               entriesRef = userRef.$child('entries');
 
+              $rootScope.$broadcast('entriesRefLoaded');
+
+              /*
               // Set up callbacks on database value load/changes.
               entriesRef.$on('loaded', function (snapshot) {
                 _this.entries(snapshot);
@@ -42,11 +45,18 @@ angular.module('rememoirApp')
               entriesRef.$on('change', function (snapshot) {
                 _this.entries(snapshot);
               });
+              */
             }
           });
         });
       },
 
+      entriesRef: function () {
+
+        return entriesRef;
+      },
+
+      /*
       entries: function (newEntries) {
 
         if (typeof newEntries !== 'undefined') { 
@@ -62,6 +72,7 @@ angular.module('rememoirApp')
           return entries; 
         }
       },
+      */
 
       email: function (newEmail) {
 

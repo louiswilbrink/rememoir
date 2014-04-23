@@ -6,12 +6,17 @@
   <!-- Default panel contents -->
   <div class="panel-heading">Write a new entry</div>
   <div class="panel-body">
-    <textarea class="form-control" rows="3"></textarea>
+    <textarea class="form-control" ng-model="home.newEntry" rows="3" placeholder="Start your next entry"></textarea>
+    <div class="pull-right star-add-container">
+      <span class="glyphicon pick-me-up-star" ng-class="{ 'glyphicon-star-empty' : !home.isPickMeUp, 'glyphicon-star' : home.isPickMeUp }" ng-click="home.togglePickMeUp()"></span>
+      <span><button ng-click="home.addEntry()" type="button" class="btn btn-primary">Save</button></span>
+    </div>
   </div>
 
   <!-- List group -->
   <ul class="list-group">
-    <li class="list-group-item" ng-repeat="entry in home.entries">
+    <li class="list-group-item" ng-repeat="(key, entry) in home.entries">
+      <span class="glyphicon glyphicon-remove pull-right" ng-click="home.removeEntry(key)"></span>
       <p>{{ entry.date | date: 'medium' }}</p>
       <p>{{ entry.entry }}</p>
       <p>isPickMeUp? {{ entry.isPickMeUp }}</p>
