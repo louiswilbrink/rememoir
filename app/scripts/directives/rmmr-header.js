@@ -25,8 +25,8 @@ angular.module('rememoirApp')
         // Event handlers
 
         $scope.$on('EmailUpdated', function () {
+          console.log('$on: EmailUpdated', 'grabbing user.email', User.email());
           $scope.user.email = User.email();
-          $scope.$digest();
         });
       }]
     };

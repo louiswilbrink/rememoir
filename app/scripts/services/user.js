@@ -5,81 +5,48 @@ angular.module('rememoirApp')
 
     var userRef,
         entriesRef,
-        //entries,
+        id,
         email,
-        isTemporaryPassword = null;
+        isTemporaryPassword = null,
+
+        // TODO: create constantsService and pull this value from there.
+        baseUrl = 'https://rememoir.firebaseIO.com';
 
     return {
 
-      createUser: function (email) {
+      createUserRef: function (newUser) {
+        
+        //id = newUser.id;
+        
+        id = '123';  // TODO: sync with Simple Login id.
+        email = newUser.email;
+        isTemporaryPassword = newUser.isTemporaryPassword;
 
-        // Save reference to service object.
-        var _this = this;
-
-        // Set firebase reference to all users.
-        // TODO: make $http request for userId.
-        // Avoid ever giving access to users.
-        var usersRef = $firebase(new Firebase('https://rememoir.firebaseIO.com/users'));
-
-        usersRef.$on('loaded', function (snapshot) {
-
-          angular.forEach(snapshot, function (value, key) {
-
-            // Corresponding user id found.
-            if (value.email === email) {
-
-              // Create user and entries firebase references.
-              // TODO: retrieve url from backend.
-              userRef = $firebase(new Firebase('https://rememoir.firebaseIO.com/users/' + key));
-
-              entriesRef = userRef.$child('entries');
-
-              $rootScope.$broadcast('entriesRefLoaded');
-
-              /*
-              // Set up callbacks on database value load/changes.
-              entriesRef.$on('loaded', function (snapshot) {
-                _this.entries(snapshot);
-              });
-
-              entriesRef.$on('change', function (snapshot) {
-                _this.entries(snapshot);
-              });
-              */
-            }
-          });
+        userRef = $firebase(new Firebase(baseUrl + '/users/' + id));
+        
+        userRef.$on('loaded', function () {
+          $rootScope.$broadcast('userRefLoaded');
         });
       },
 
       entriesRef: function () {
 
-        return entriesRef;
+        return userRef.$child('entries');
       },
 
-      /*
-      entries: function (newEntries) {
+      id: function (newId) {
 
-        if (typeof newEntries !== 'undefined') { 
-
-          entries = newEntries;
-
-          $rootScope.$broadcast('entriesUpdated');
-
-          console.log('$broadcast: entriesUpdated', entries);
+        if (typeof newId !== 'undefined') {
+          id = newId;
         }
-        else { 
 
-          return entries; 
-        }
+        // Don't create getter for now.
       },
-      */
 
       email: function (newEmail) {
 
         if (typeof newEmail !== 'undefined') { 
           email = newEmail;
-
-          this.createUser(newEmail);
 
           $rootScope.$broadcast('EmailUpdated');
 
@@ -96,6 +63,7 @@ angular.module('rememoirApp')
           isTemporaryPassword = newIsTemporaryPassword;
 
           $rootScope.$broadcast('isTemporaryPasswordUpdated');
+
           console.log('$broadcast: isTemporaryPasswordUpdated', isTemporaryPassword);
         }
         else {

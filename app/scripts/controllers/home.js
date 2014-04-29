@@ -43,7 +43,7 @@ angular.module('rememoirApp')
     // Event-handlers.
 
     // Create 3-way binding to user.entries.
-    $scope.$on('entriesRefLoaded', function () {
+    $scope.$on('userRefLoaded', function () {
       User.entriesRef().$bind($scope, 'home.entries');
     });
   }]);
