@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('rememoirApp')
-  .controller('HomeCtrl', ['$scope', 'User', function ($scope, User) {
+  .controller('HomeCtrl', ['$scope', '$timeout', 'User', function ($scope, $timeout, User) {
 
     $scope.home = {
 
@@ -16,6 +16,8 @@ angular.module('rememoirApp')
       // Methods.
       
       addEntry: function () {
+
+        console.log(this.entries);
 
         // Add entry to firebase.
         this.entries[Date.now()] = {

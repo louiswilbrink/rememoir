@@ -151,15 +151,6 @@ angular.module('rememoirApp')
           $scope.login.panelStatus = 'Log in';
           $scope.$digest();
         });
-
-        $scope.$on('NewUserCreated', function (event) {
-          $scope.login.showCreateUser = false;
-          $scope.$digest();
-        });
-
-        $scope.$on('LoginSuccess', function () {
-          $location.path('home');
-        });
       }]
     };
   });

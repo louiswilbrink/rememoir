@@ -1,25 +1,21 @@
 'use strict';
 
 angular.module('rememoirApp')
-  .controller('MainCtrl', ['$scope', '$firebase', 'User', 'RemIO', function ($scope, $firebase, User, RemIO) {
+  .controller('MainCtrl', ['$scope', '$firebase', '$location', 'User', 'RemIO', function ($scope, $firebase, $location, User, RemIO) {
 
     $scope.main = {
-      showProfile: false
+      // Model
+      
+      // Methods
     };
-
-    // Methods
 
     // Event handlers
     
-    $scope.$on('LoginSuccess', function () {
-      $scope.main.showProfile = true;
-    });
-
     $scope.$on('NewUserCreated', function () {
-      $scope.main.showProfile = true;
+      $location.path('home');
     });
 
-    $scope.$on('Logout', function () {
-      $scope.main.showProfile = false;
+    $scope.$on('LoginSuccess', function () {
+      $location.path('home');
     });
   }]);

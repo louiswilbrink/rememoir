@@ -7,10 +7,13 @@ angular.module('rememoirApp')
       restrict: 'E',
       controller: ['$scope', '$location', 'User', 'RemIO', function ($scope, $location, User, RemIO) {
 
-        // Model
-
         $scope.user = {
-          email: ''
+          
+          // Model
+
+          // Pull email from User service.
+          // If service hasn't yet loaded an initial value, oh well.
+          email: User.email()
         };
 
         // API
@@ -26,7 +29,9 @@ angular.module('rememoirApp')
 
         $scope.$on('EmailUpdated', function () {
           console.log('$on: EmailUpdated', 'grabbing user.email', User.email());
-          $scope.user.email = User.email();
+          $scope.$apply(function () {
+            $scope.user.email = User.email();
+          });
         });
       }]
     };

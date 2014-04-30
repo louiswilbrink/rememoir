@@ -15,9 +15,11 @@
 
   <!-- List group -->
   <ul class="list-group">
-    <li class="list-group-item" ng-repeat="(key, entry) in home.entries">
+    <!-- 'barrel_bottom' keeps the entries reference populated. -->
+    <!-- If the user deletes all of their entries, the entries reference will be removed from the firebase and cause errors when $firebase attempts to refer to it. -->
+    <li class="list-group-item" ng-class="{ 'hidden' : key === 'barrel_bottom' }" ng-repeat="(key, entry) in home.entries">
       <span class="glyphicon glyphicon-remove pull-right" ng-click="home.removeEntry(key)"></span>
-      <p>{{ entry.date | date: 'medium' }}</p>
+      <p>{{ entry.date | date: 'shortDate' }}</p>
       <p>{{ entry.entry }}</p>
       <p>isPickMeUp? {{ entry.isPickMeUp }}</p>
     </li>

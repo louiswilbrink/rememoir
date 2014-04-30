@@ -7,24 +7,25 @@ angular.module('rememoirApp')
         entriesRef,
         id,
         email,
-        isTemporaryPassword = null,
-
-        // TODO: create constantsService and pull this value from there.
+        isTemporaryPassword = undefined,
         baseUrl = 'https://rememoir.firebaseIO.com';
 
     return {
 
       createUserRef: function (newUser) {
         
-        //id = newUser.id;
-        
-        id = '123';  // TODO: sync with Simple Login id.
+        id = newUser.id;
+
         email = newUser.email;
+        $rootScope.$broadcast('EmailUpdated');
+
         isTemporaryPassword = newUser.isTemporaryPassword;
+        $rootScope.$broadcast('isTemporaryPasswordUpdated');
 
         userRef = $firebase(new Firebase(baseUrl + '/users/' + id));
         
-        userRef.$on('loaded', function () {
+        userRef.$on('loaded', function (snapshot) {
+          console.log('userRefLoaded:', snapshot);
           $rootScope.$broadcast('userRefLoaded');
         });
       },

@@ -15,13 +15,6 @@ angular.module('rememoirApp')
 
         User.createUserRef(user); // populates email, entries, etc.
 
-        // TODO: confirm redundance/necessity and remove.
-        User.email(user.email);
-
-        User.id(user.id);
-
-        User.isTemporaryPassword(user.isTemporaryPassword);
-
         $rootScope.$broadcast('LoginSuccess', user);
       } 
       else {
@@ -69,19 +62,27 @@ angular.module('rememoirApp')
         auth.createUser(email, password, function(error, user) {
           if (!error) {
 
+            // TODO: Unbind right after database interaction.
             usersRef = $firebase(new Firebase('https://rememoir.firebaseIO.com/users'));
 
+            // Create a new user object using the SimpleLogin id as the key.
             var newUser = {};
 
             newUser[user.id] = {
-              email: user.email
+              email: user.email,
+              entries: {
+                barrel_bottom: 'avoids emptying the entries reference completely'
+              }
             };
            
+            // Use $update in order to set the correct key (user.id).
+            // $add will just push the object with a random key.
+            // We don't want that since we'd like the id between the firebase and SimpleLogin to match.
             usersRef.$update(newUser);
 
             $rootScope.$broadcast('NewUserCreated');
 
-            console.log('$broadcast: NewUserCreated', user.id, user.email);
+
           }
           else {
             console.log('Error: createUser', error);
