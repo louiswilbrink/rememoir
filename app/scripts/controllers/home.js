@@ -9,7 +9,7 @@ angular.module('rememoirApp')
       
       entries: undefined,
 
-      newEntry: '',
+      memory: '',
 
       isPickMeUp: false,
 
@@ -17,23 +17,21 @@ angular.module('rememoirApp')
       
       addEntry: function () {
 
-        console.log(this.entries);
-
-        // Add entry to firebase.
-        this.entries[Date.now()] = {
-          date: Date.now(),
-          entry: this.newEntry,
+        var newEntry = {
+          date: Date(),
+          memory: this.memory,
           isPickMeUp: this.isPickMeUp
         };
 
-        // Reset entry.
-        this.newEntry = '';
-        this.isPickMeUp = false;
+        User.addEntry(newEntry);
+
+        this.memory = '';
+        this.isPickMeUp = true;
       },
 
       removeEntry: function (key) {
 
-        delete this.entries[key];
+        User.removeEntry(key);
       },
 
       togglePickMeUp: function () {
@@ -43,9 +41,15 @@ angular.module('rememoirApp')
     };
 
     // Event-handlers.
+  
+    $scope.$on('userLoaded', function () {
+      $scope.$apply(function () {
+        $scope.home.entries = User.entries();
+      });
+    });
 
     // Create 3-way binding to user.entries.
-    $scope.$on('userRefLoaded', function () {
-      User.entriesRef().$bind($scope, 'home.entries');
+    $scope.$on('userUpdated', function () {
+      $scope.home.entries = User.entries();
     });
   }]);

@@ -3,7 +3,7 @@
 angular.module('rememoirApp')
   .service('User', ['$rootScope', '$firebase', function User($rootScope, $firebase) {
 
-    var userRef,
+    var userRef, user,
         entriesRef,
         id,
         email,
@@ -14,25 +14,54 @@ angular.module('rememoirApp')
 
       createUserRef: function (newUser) {
         
-        id = newUser.id;
+        // Set info using SimpleLogin returned data.
+        this.id(newUser.id);
+        this.email(newUser.email);
+        this.isTemporaryPassword(newUser.isTemporaryPassword);
 
-        email = newUser.email;
-        $rootScope.$broadcast('EmailUpdated');
+        userRef = new Firebase(baseUrl + '/users/' + id);
 
-        isTemporaryPassword = newUser.isTemporaryPassword;
-        $rootScope.$broadcast('isTemporaryPasswordUpdated');
+        var _this = this;
 
-        userRef = $firebase(new Firebase(baseUrl + '/users/' + id));
-        
-        userRef.$on('loaded', function (snapshot) {
-          console.log('userRefLoaded:', snapshot);
-          $rootScope.$broadcast('userRefLoaded');
+        userRef.once('value', function (snapshot) {
+
+          // Check if if user info matches between SimpleLogin and rememoir database.
+          if (_this.email() !== snapshot.val().email) {
+            console.log('SYNC ERROR: database and SimpleLogin do not have matching email', _this.email(), snapshot.val().email);
+          }
+          else {
+            console.log('SimpleLogin/Firebase match!', snapshot.val().email);
+          }
+
+          user = snapshot.val();
+
+          $rootScope.$broadcast('userLoaded');
+        });
+
+        // Update and broadcast for all subsequent value changes.
+        userRef.on('value', function (snapshot) {
+          user = snapshot.val();
+          $rootScope.$broadcast('userUpdated');
         });
       },
 
-      entriesRef: function () {
+      entries: function () {
 
-        return userRef.$child('entries');
+        return user.entries;
+      },
+
+      addEntry: function (newEntry) {
+
+        userRef.child('entries').push().set({ 
+          date: newEntry.date,
+          memory: newEntry.memory,
+          isPickMeUp: newEntry.isPickMeUp
+        });
+      },
+
+      removeEntry: function (key) {
+
+        userRef.child('entries').child(key).remove();
       },
 
       id: function (newId) {
