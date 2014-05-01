@@ -26,7 +26,7 @@ angular.module('rememoirApp')
         User.addEntry(newEntry);
 
         this.memory = '';
-        this.isPickMeUp = true;
+        this.isPickMeUp = false;
       },
 
       removeEntry: function (key) {
@@ -48,7 +48,6 @@ angular.module('rememoirApp')
       });
     });
 
-    // Create 3-way binding to user.entries.
     $scope.$on('userUpdated', function () {
       $scope.home.entries = User.entries();
     });

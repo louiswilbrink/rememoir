@@ -13,6 +13,8 @@ angular.module('rememoirApp')
     return {
 
       createUserRef: function (newUser) {
+
+        console.log('newUser:', newUser);
         
         // Set info using SimpleLogin returned data.
         this.id(newUser.id);
@@ -45,9 +47,23 @@ angular.module('rememoirApp')
         });
       },
 
+      clearUser: function () {
+
+        user = undefined;
+        id = undefined;
+        email = undefined;
+        isTemporaryPassword = undefined;
+
+        $rootScope.$broadcast('EmailUpdated');
+        $rootScope.$broadcast('isTemporaryPasswordUpdated');
+        $rootScope.$broadcast('userUpdated');
+      },
+
       entries: function () {
 
-        return user.entries;
+        if (user) {
+          return user.entries;
+        }
       },
 
       addEntry: function (newEntry) {
@@ -79,8 +95,6 @@ angular.module('rememoirApp')
           email = newEmail;
 
           $rootScope.$broadcast('EmailUpdated');
-
-          console.log('$broadcast: EmailUpdated', email);
         }
         else { 
           return email; 
@@ -93,8 +107,6 @@ angular.module('rememoirApp')
           isTemporaryPassword = newIsTemporaryPassword;
 
           $rootScope.$broadcast('isTemporaryPasswordUpdated');
-
-          console.log('$broadcast: isTemporaryPasswordUpdated', isTemporaryPassword);
         }
         else {
           return isTemporaryPassword;

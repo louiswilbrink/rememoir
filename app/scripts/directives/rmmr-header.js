@@ -5,7 +5,7 @@ angular.module('rememoirApp')
     return {
       templateUrl: 'views/rmmr-header.html',
       restrict: 'E',
-      controller: ['$scope', '$location', 'User', 'RemIO', function ($scope, $location, User, RemIO) {
+      controller: ['$scope', '$location', '$timeout', 'User', 'RemIO', function ($scope, $location, $timeout, User, RemIO) {
 
         $scope.user = {
           
@@ -21,14 +21,11 @@ angular.module('rememoirApp')
         $scope.user.logout = function () {
 
           RemIO.logout();
-
-          $location.path('/');
         };
 
         // Event handlers
 
         $scope.$on('EmailUpdated', function () {
-          console.log('$on: EmailUpdated', 'grabbing user.email', User.email());
           $scope.$apply(function () {
             $scope.user.email = User.email();
           });

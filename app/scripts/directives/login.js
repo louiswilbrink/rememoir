@@ -131,25 +131,10 @@ angular.module('rememoirApp')
         // Event Handlers
 
         $scope.$on('LoginError', function (event, error) {
-          setPanelClasses('panel-danger');
-          $scope.login.panelStatus = "User does not exist";
-          $scope.$digest();
-        });
-
-        $scope.$on('LoginSuccess', function (event, user) {
-          setPanelClasses('panel-success');
-          $scope.login.panelStatus = 'Success!  You are logged in as ' + User.email();
-          $scope.login.showLogin = false;
-          $scope.$digest();
-        });
-
-        $scope.$on('Logout', function (event) {
-          $scope.login.email = '';
-          $scope.login.password = '';
-          $scope.login.showLogin = true;
-          setPanelClasses('panel-primary');
-          $scope.login.panelStatus = 'Log in';
-          $scope.$digest();
+          $scope.$apply(function () {
+            setPanelClasses('panel-danger');
+            $scope.login.panelStatus = "User does not exist";
+          });
         });
       }]
     };

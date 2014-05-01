@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('rememoirApp')
-  .service('RemIO', ['$rootScope', 'User', '$firebase', function RemIO($rootScope, User, $firebase) {
+  .service('RemIO', ['$rootScope', '$location', 'User', '$firebase', function RemIO($rootScope, $location, User, $firebase) {
 
     var usersRef = undefined;
 
@@ -13,14 +13,23 @@ angular.module('rememoirApp')
       } 
       else if (user) {
 
+        console.log('Login Success:', user);
+
         User.createUserRef(user); // populates email, entries, etc.
 
-        $rootScope.$broadcast('LoginSuccess', user);
+        $rootScope.$broadcast('LoginSuccess');
+
+        $rootScope.$apply(function () {
+          $location.path('/home');
+        });
       } 
       else {
 
-        // user is logged out
-        $rootScope.$broadcast('Logout');
+        User.clearUser();
+
+        $rootScope.$apply(function () {
+          $location.path('/');
+        });
       }
     });
 
@@ -59,6 +68,8 @@ angular.module('rememoirApp')
 
       createUser: function (email, password) {
 
+        var _this = this;
+
         auth.createUser(email, password, function(error, user) {
           if (!error) {
 
@@ -80,9 +91,16 @@ angular.module('rememoirApp')
             // We don't want that since we'd like the id between the firebase and SimpleLogin to match.
             usersRef.$update(newUser);
 
-            $rootScope.$broadcast('NewUserCreated');
+            // Log in.
+            _this.login({
+              email: email,
+              password: password,
+              rememberMe: false
+            });
 
-
+            $rootScope.$apply(function () {
+              $location.path('/home');
+            });
           }
           else {
             console.log('Error: createUser', error);
