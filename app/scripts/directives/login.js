@@ -72,8 +72,6 @@ angular.module('rememoirApp')
         
         $scope.onForgetPasswordClicked = function () {
 
-          console.log('onForgetPasswordClicked');
-
           $location.path('forget-password');
 
         };

@@ -14,8 +14,6 @@ angular.module('rememoirApp')
 
       createUserRef: function (newUser) {
 
-        console.log('newUser:', newUser);
-        
         // Set info using SimpleLogin returned data.
         this.id(newUser.id);
         this.email(newUser.email);

@@ -1,3 +1,16 @@
+body {
+ font-family: 'Roboto', sans-serif;
+ font-weight: 300;
+}
+
+.login-background {
+  background-image: url("../images/background/building-optimized.jpg");
+  background-position: center;
+  background-size: 100% auto;
+  padding-top: 60px;
+  height: 100vh;
+}
+
 .pick-me-up-star {
   font-size: 24px;
   top: 7px;
@@ -7,3 +20,70 @@
 .star-add-container {
   margin-top: 15px;
 }
+
+.login {
+  max-width: 350px;
+  width: 45%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.login-form-group {
+  text-align: center;
+}
+
+.login-field {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+  width: 90%;
+  height: 54px;
+}
+
+.panel-logo {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Huge Desktop */
+@media screen and (min-width: 1200px) {
+
+} /* -------- 1200px ---------- */
+
+/* Desktop */
+@media screen and (max-width: 1199px) {
+
+} /* -------- 1199px ---------- */
+
+/* iPad 1/2/3/4/Mini | landscape */
+@media screen and (max-width: 1024px) {
+
+} /* -------- 1024px ---------- */
+
+/* iPad 1/2/3/4/Mini | portrait */
+@media screen and (max-width: 768px) {
+
+  .login {
+    width: 80%;
+  }
+} /* -------- 768px ---------- */
+
+/* iPhone 5/5S | landscape */
+@media screen and (max-width: 568px) {
+
+} /* -------- 568px ---------- */
+
+/* iPhone 4/4S | landscape */
+@media screen and (max-width: 480px) {
+
+} /* -------- 480px ---------- */
+
+/* iPhone 4/4S/5/5S | portrait */
+@media screen and (max-width: 320px) {
+
+  .login {
+    width: 90%;
+  }
+} /* end of (min-width: 320px) */

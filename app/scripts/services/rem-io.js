@@ -13,8 +13,6 @@ angular.module('rememoirApp')
       } 
       else if (user) {
 
-        console.log('Login Success:', user);
-
         User.createUserRef(user); // populates email, entries, etc.
 
         $rootScope.$broadcast('LoginSuccess');
