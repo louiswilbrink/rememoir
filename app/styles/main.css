@@ -4,7 +4,7 @@ body {
 }
 
 .login-background {
-  background-image: url("../images/background/building-optimized.jpg");
+  background-image: url("http://162.243.103.157/assets/building.jpg");
   background-position: center;
   background-size: 100% auto;
   padding-top: 60px;
