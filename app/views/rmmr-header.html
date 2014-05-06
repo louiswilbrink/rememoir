@@ -3,6 +3,7 @@
     <li style="line-height: 40px;">
       <span ng-show="user.email">{{ user.email }}</span>
       <span ng-show="user.email"> | <a ng-click="user.logout()">Logout</a></span>
+      <span ng-show="user.email"> | <a ng-click="user.open('sm')">Delete Account</a></span>
     </li>
   </ul>
   <span class="logo"><img ng-src="images/logo.png" alt="rememoir logo" class="logo"></span>

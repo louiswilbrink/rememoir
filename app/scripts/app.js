@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('rememoirApp', ['ngRoute', 'firebase'])
+angular.module('rememoirApp', ['ngRoute', 'firebase', 'ui.bootstrap'])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
