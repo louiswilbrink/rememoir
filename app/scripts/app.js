@@ -14,6 +14,10 @@ angular.module('rememoirApp', ['ngRoute', 'firebase', 'ui.bootstrap'])
         templateUrl: 'views/home.html',
         controller: 'HomeCtrl'
       })
+      .when('/delete-account', {
+        templateUrl: 'views/delete-account.html',
+        controller: 'DeleteAccountCtrl'
+      })
       .when('/the-rack', {
         templateUrl: 'views/the-rack.html',
       })
