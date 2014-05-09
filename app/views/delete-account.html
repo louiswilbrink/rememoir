@@ -1,17 +1,19 @@
-<div class="container">
-  <h1>Are you sure you want to delete your account?</h1>
-  <div class="panel panel-primary">
-    <div class="panel-body">
-      <form class="form-horizontal" role="form">
-        <div class="login-form-group">
-          <input type="email" class="login-field form-control" id="inputEmail3" ng-model="deleteAccount.email" placeholder="Email">
-      </div>
-      <div class="login-form-group">
-        <input type="password" class="login-field form-control" id="inputPassword3" ng-model="deleteAccount.password" placeholder="Password">
-        <div class="login-form-group">
-            <span><button type="submit" class="login-field btn btn-primary" ng-click="deleteAccount.deleteAccount()">Delete Account</button></span>
+<div class="delete-account-background">
+  <div class="delete-account-container">
+    <div class="panel panel-primary">
+      <div class="panel-body">
+        <h2 class="delete-title">Are you sure you want to delete your account?</h2>
+        <form class="form-horizontal" role="form">
+          <div class="login-form-group">
+            <input type="email" class="login-field form-control" id="inputEmail3" ng-model="deleteAccount.email" placeholder="Email">
         </div>
-      </form>
+        <div class="login-form-group">
+          <input type="password" class="login-field form-control" id="inputPassword3" ng-model="deleteAccount.password" placeholder="Password">
+          <div class="login-form-group">
+              <span><button type="submit" class="login-field btn btn-danger" ng-click="deleteAccount.deleteAccount()">Delete Account</button></span>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 </div>
