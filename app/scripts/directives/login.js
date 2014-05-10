@@ -93,12 +93,6 @@ angular.module('rememoirApp')
         };
 
         $scope.signIn = function () {
-
-          RemIO.login({
-            email: $scope.login.email,
-            password: $scope.login.password,
-            rememberMe: $scope.login.rememberMe
-          });
         };
 
         $scope.signUp = function () {

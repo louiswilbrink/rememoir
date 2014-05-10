@@ -11,6 +11,11 @@ body {
   height: 100vh;
 }
 
+.login-status {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
 .pick-me-up-star {
   font-size: 24px;
   top: 7px;

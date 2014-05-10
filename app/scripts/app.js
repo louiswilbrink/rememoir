@@ -4,8 +4,8 @@ angular.module('rememoirApp', ['ngRoute', 'firebase', 'ui.bootstrap'])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
+        templateUrl: 'views/login.html',
+        controller: 'LoginCtrl'
       })
       .when('/forget-password', {
         templateUrl: 'views/forget-password-page.html',

@@ -1,49 +1,26 @@
-<!-- Login panel -->
-<div class="login">
-  <div class="panel" ng-class="login.getPanelClasses()" ng-show="login.showLogin">
-    <div class="panel-body">
-      <div class="panel-logo">
-        <img ng-src="images/logo.png" alt="rememoir logo">
+<div class="row login-background">
+  <div class="login">
+    <div class="panel">
+      <div class="panel-body">
+        <div class="panel-logo">
+          <img ng-src="images/logo.png" alt="rememoir logo">
+        </div>
+        <div class="login-status">{{ login.status }}</div>
+        <form class="form-horizontal" role="form">
+          <div class="login-form-group">
+            <input type="email" class="login-field form-control" id="inputEmail3" ng-model="login.email" placeholder="Email">
+        </div>
+        <div class="login-form-group">
+          <input type="password" class="login-field form-control" id="inputPassword3" ng-model="login.password" placeholder="Password">
+          <div class="login-form-group">
+              <span><button type="submit" class="login-field btn btn-primary" ng-click="login.signIn()">Sign in</button></span>
+          </div>
+          <div class="login-form-group">
+            <span><p ng-click="login.onForgetPasswordClicked()"><a>Forgot Password?</a></p></span>
+            <span><p ng-click="login.navigateTo('/create-user')"><a>Not a member? Sign up today.</a></p></span>
+          </div>
+        </form>
       </div>
-      <form class="form-horizontal" role="form">
-        <div class="login-form-group">
-          <input type="email" class="login-field form-control" id="inputEmail3" ng-model="login.email" placeholder="Email">
-      </div>
-      <div class="login-form-group">
-        <input type="password" class="login-field form-control" id="inputPassword3" ng-model="login.password" placeholder="Password">
-        <div class="login-form-group">
-            <span><button type="submit" class="login-field btn btn-primary" ng-click="signIn()">Sign in</button></span>
-        </div>
-        <div class="login-form-group">
-          <span><p ng-click="onForgetPasswordClicked()"><a>Forgot Password?</a></p></span>
-          <span><p ng-click="login.toggleLoginCreateUser()"><a>Not a member? Sign up today.</a></p></span>
-        </div>
-      </form>
-    </div>
-  </div>
-  <!-- create user panel -->
-  <div class="panel" ng-class="login.getPanelClasses()" ng-show="login.showCreateUser">
-    <div class="panel-heading">{{ createUser.panelStatus }}</div>
-    <div class="panel-body">
-      <form class="form-horizontal" role="form">
-        <div class="form-group">
-          <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
-          <div class="col-sm-10">
-            <input type="email" class="form-control" id="inputEmail3" ng-model="createUser.email" placeholder="Email" ng-keypress="login.resetPanelStatus()">
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
-          <div class="col-sm-10">
-            <input type="password" class="form-control" id="inputPassword3" ng-model="createUser.password" placeholder="Password">
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" class="btn btn-primary" ng-click="signUp()">Sign me up!</button>
-          </div>
-        </div>
-      </form>
     </div>
   </div>
 </div>
