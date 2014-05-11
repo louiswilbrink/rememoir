@@ -1,5 +1,5 @@
 <div class="row login-background">
-  <div class="login">
+  <div class="rem-form-container">
     <div class="panel">
       <div class="panel-body">
         <div class="panel-logo">
@@ -7,15 +7,15 @@
         </div>
         <div class="login-status">{{ login.status }}</div>
         <form class="form-horizontal" role="form">
-          <div class="login-form-group">
-            <input type="email" class="login-field form-control" id="inputEmail3" ng-model="login.email" placeholder="Email">
+          <div class="centered">
+            <input type="email" class="rem-field form-control" id="inputEmail3" ng-model="login.email" placeholder="Email">
         </div>
-        <div class="login-form-group">
-          <input type="password" class="login-field form-control" id="inputPassword3" ng-model="login.password" placeholder="Password">
-          <div class="login-form-group">
-              <span><button type="submit" class="login-field btn btn-primary" ng-click="login.signIn()">Sign in</button></span>
+        <div class="centered">
+          <input type="password" class="rem-field form-control" id="inputPassword3" ng-model="login.password" placeholder="Password">
+          <div class="centered">
+              <span><button type="submit" class="rem-field btn btn-primary" ng-click="login.signIn()">Sign in</button></span>
           </div>
-          <div class="login-form-group">
+          <div class="centered">
             <span><p ng-click="login.onForgetPasswordClicked()"><a>Forgot Password?</a></p></span>
             <span><p ng-click="login.navigateTo('/create-user')"><a>Not a member? Sign up today.</a></p></span>
           </div>

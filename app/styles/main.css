@@ -26,18 +26,18 @@ body {
   margin-top: 15px;
 }
 
-.login {
+.rem-form-container {
   max-width: 350px;
   width: 45%;
   margin-left: auto;
   margin-right: auto;
 }
 
-.login-form-group {
+.centered {
   text-align: center;
 }
 
-.login-field {
+.rem-field {
   text-align: center;
   margin-left: auto;
   margin-right: auto;

@@ -1,0 +1,23 @@
+<div class="row login-background">
+  <div class="rem-form-container">
+    <div class="panel">
+      <div class="panel-body">
+        <div class="panel-logo">
+          <img ng-src="images/logo.png" alt="rememoir logo">
+        </div>
+        <div class="login-status">{{ createUser.status }}</div>
+        <form class="form-horizontal" role="form">
+          <div class="centered">
+            <input type="email" class="rem-field form-control" id="inputEmail3" ng-model="createUser.email" placeholder="Email">
+          </div>
+          <div class="centered">
+            <input type="password" class="rem-field form-control" id="inputPassword3" ng-model="createUser.password" placeholder="Password">
+          </div>
+          <div class="centered">
+            <button type="submit" class="rem-field btn btn-primary" ng-click="createUser.signUp()">Sign me up!</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

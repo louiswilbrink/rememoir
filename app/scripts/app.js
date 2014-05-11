@@ -7,6 +7,10 @@ angular.module('rememoirApp', ['ngRoute', 'firebase', 'ui.bootstrap'])
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl'
       })
+      .when('/create-user', {
+        templateUrl: 'views/create-user.html',
+        controller: 'CreateUserCtrl'
+      })
       .when('/forget-password', {
         templateUrl: 'views/forget-password-page.html',
       })
@@ -20,6 +24,9 @@ angular.module('rememoirApp', ['ngRoute', 'firebase', 'ui.bootstrap'])
       })
       .when('/the-rack', {
         templateUrl: 'views/the-rack.html',
+      })
+      .when('/sandbox', {
+        templateUrl: 'views/sandbox.html',
       })
       .otherwise({
         redirectTo: '/'
