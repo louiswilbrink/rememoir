@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('rememoirApp')
-  .controller('DeleteAccountCtrl', ['$scope', 'RemIO', function ($scope, RemIO) {
+  .controller('DeleteAccountCtrl', ['$scope', 'RemIO', 'User', function ($scope, RemIO, User) {
 
     $scope.deleteAccount = {
 

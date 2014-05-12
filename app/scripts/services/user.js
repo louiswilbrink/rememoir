@@ -57,6 +57,18 @@ angular.module('rememoirApp')
         $rootScope.$broadcast('userUpdated');
       },
 
+      deleteUser: function () {
+
+        return userRef.remove(function (error) {
+          if (!error) {
+            console.log('user deleted from firebase:', email, id);
+          }
+          else {
+            console.log('error:', error);
+          }
+        });
+      },
+
       entries: function () {
 
         if (user) {

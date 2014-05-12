@@ -65,10 +65,19 @@ angular.module('rememoirApp')
       },
 
       deleteUser: function (email, password) {
+
+        var _this = this;
+
         auth.removeUser(email, password, function(error, success) {
           if (!error) {
             console.log('User deleted successfully', email);
           }
+          else {
+            console.log('deleteUser error:', error);
+          }
+        }).then(function () {
+          User.deleteUser();
+          _this.logout();
         });
       },
 

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('rememoirApp')
-  .controller('CreateUserCtrl', function ($scope) {
+  .controller('CreateUserCtrl', ['$scope', 'RemIO', function ($scope, RemIO) {
 
     $scope.createUser = {
       email: '',
@@ -18,5 +18,4 @@ angular.module('rememoirApp')
         RemIO.createUser($scope.createUser.email, $scope.createUser.password);
       }
     };
-
-  });
+  }]);
