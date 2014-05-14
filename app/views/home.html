@@ -17,8 +17,9 @@
     <ul class="list-group">
       <!-- 'barrel_bottom' keeps the entries reference populated. -->
       <!-- If the user deletes all of their entries, the entries reference will be removed from the firebase and cause errors when $firebase attempts to refer to it. -->
-      <li class="list-group-item" ng-class="{ 'hidden' : key === 'barrel_bottom' }" ng-repeat="(key, entry) in home.entries">
-        <span class="glyphicon glyphicon-remove pull-right" ng-click="home.removeEntry(key)"></span>
+      <li class="list-group-item" ng-class="{ 'hidden' : entry.date === undefined }" ng-repeat="(key, entry) in home.entries | orderObjectBy:'date':true">
+        <!-- entries is an object that is converted into and array and sorted by reverse date using the orderObjectBy filter. During conversion, the keys are nested inside the object. -->
+        <span class="glyphicon glyphicon-remove pull-right" ng-click="home.removeEntry(entry.key)"></span>
         <p>{{ entry.date | date: 'shortDate' }}</p>
         <p>{{ entry.memory }}</p>
         <p>isPickMeUp? {{ entry.isPickMeUp }}</p>

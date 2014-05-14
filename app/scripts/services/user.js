@@ -72,14 +72,7 @@ angular.module('rememoirApp')
       entries: function () {
 
         if (user) {
-
-          var entries = [];
-
-          for (var key in user.entries) {
-            entries.push(user.entries[key]);
-          }
-
-          return entries;
+          return user.entries;
         }
       },
 

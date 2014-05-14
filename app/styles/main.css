@@ -3,6 +3,10 @@ body {
  font-weight: 300;
 }
 
+a {
+  cursor: pointer;
+}
+
 .login-background {
   background-image: url("http://162.243.103.157/assets/building.jpg");
   background-position: center;
