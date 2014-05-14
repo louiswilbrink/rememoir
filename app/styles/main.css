@@ -15,9 +15,13 @@ a {
   height: 100vh;
 }
 
-.login-status {
+.form-status {
   text-align: center;
   margin-bottom: 20px;
+}
+
+.error-text {
+  color: red;
 }
 
 .pick-me-up-star {

@@ -116,9 +116,13 @@ angular.module('rememoirApp')
             $rootScope.$apply(function () {
               $location.path('/home');
             });
+
+            $rootScope.$broadcast('CreateUserSuccess', error);
           }
           else {
             console.log('Error: createUser', error);
+
+            $rootScope.$broadcast('CreateUserError', error);
           }
         });
       }

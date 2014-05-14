@@ -5,7 +5,7 @@
         <div class="panel-logo">
           <img ng-src="images/logo.png" alt="rememoir logo">
         </div>
-        <div class="login-status">{{ createUser.status }}</div>
+        <div class="form-status" ng-class="{ 'error-text' : createUser.status.isError }">{{ createUser.status.text }}</div>
         <form class="form-horizontal" role="form">
           <div class="centered">
             <input type="email" class="rem-field form-control" id="inputEmail3" ng-model="createUser.email" placeholder="Email">
