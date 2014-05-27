@@ -19,7 +19,7 @@
         ng-repeat="(key, entry) in home.entries | orderObjectBy : 'date' : true"
         ng-style="{ 'background-color' : home.colorPallete[$index % home.colorPallete.length] }">
         <!-- entries is an object that is converted into and array and sorted by reverse date using the orderObjectBy filter. During conversion, the keys are nested inside the object. -->
-        <span class="glyphicon glyphicon-remove pull-right" ng-click="home.removeEntry(entry.key)"></span>
+        <span class="glyphicon glyphicon-remove pull-right" ng-click="home.removeEntry(entry.firebaseKey)"></span>
         <h4>{{ entry.date | date: 'EEEE' }},</h4>
         <h4>{{ entry.date | date: 'longDate' }}</h4>
         <p class="memory">{{ entry.memory }}</p>

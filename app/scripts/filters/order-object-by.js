@@ -7,6 +7,7 @@ angular.module('rememoirApp')
       var filtered = [];
       
       angular.forEach(items, function(item, key) {
+        item.firebaseKey = key;
         filtered.push(item);
       });
 
