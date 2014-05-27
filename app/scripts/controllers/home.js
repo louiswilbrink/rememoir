@@ -13,18 +13,24 @@ angular.module('rememoirApp')
 
       isPickMeUp: false,
 
+      colorPallete: ['#B565A7', '#ffd600',
+        '#e46764', '#f47d44', '#ceb48d',
+        '#7f7ea8', '#752864', '#006bb6',
+        '#46866f'],
+
       // Methods.
       
       addEntry: function () {
 
         var newEntry = {
-          date: Date(),
+          date: Date.now(),
           memory: this.memory,
           isPickMeUp: this.isPickMeUp
         };
 
         User.addEntry(newEntry);
 
+        // Reset new entry form.
         this.memory = '';
         this.isPickMeUp = false;
       },

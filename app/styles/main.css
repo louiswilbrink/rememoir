@@ -1,6 +1,17 @@
-body {
- font-family: 'Roboto', sans-serif;
- font-weight: 300;
+body, h1, h2, h3, h4, h5, h6 {
+  font-family: FiraSans, Courier, monospace;
+  font-weight: normal;
+  font-size: 2em;
+}
+
+h1 {
+  font-size: 3em;
+}
+
+p {
+  font-family: FiraSans, Courier, monospace;
+  font-weight: 100;
+  font-size: 1.5em;
 }
 
 a {
@@ -137,6 +148,26 @@ a {
   width: 350px;
   word-spacing: 0px;
   writing-mode: lr-tb;
+}
+
+.home-background {
+  background-image: url("http://162.243.103.157/assets/backgrounds/whitey.png");
+  min-height: 100vh;
+}
+
+.entry-form {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.rem-list-group-item {
+  margin-bottom: 20px;
+}
+
+.rem-box-shadow {
+  -webkit-box-shadow: 10px 10px 65px -10px rgba(0,0,0,0.89);
+  -moz-box-shadow: 10px 10px 65px -10px rgba(0,0,0,0.89);
+  box-shadow: 10px 10px 65px -10px rgba(0,0,0,0.89);
 }
 
 /* Huge Desktop */

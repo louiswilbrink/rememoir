@@ -1,0 +1,35 @@
+.form-control {
+  font-size: 1.5em;
+  font-family: 
+  font-family: FiraSans, Courier, monospace;
+  font-weight: 100;
+}
+
+/* .container */
+
+@media (min-width: 768px) {
+  .container {
+    width: 450px;
+  }
+}
+
+/* iPhone 5/5S | landscape */
+@media screen and (max-width: 568px) {
+  .container {
+    width: 90%;
+  }
+} /* end of (max-width: 568px) */
+
+/* Beyond iPhone 5/5S | landscape */
+@media screen and (min-width: 569px) {
+  .container {
+    width: 450px;
+  }
+} /* end of (min-width: 569px) */
+
+/* iPad | landscape */
+@media screen and (min-width: 768px) {
+  .container {
+    width: 550px;
+  }
+} /* end of (min-width: 569px) */
