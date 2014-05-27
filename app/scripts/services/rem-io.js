@@ -73,6 +73,7 @@ angular.module('rememoirApp')
             console.log('User deleted successfully', email);
           }
           else {
+            $rootScope.$broadcast('DeleteUserError', error);
             console.log('deleteUser error:', error);
           }
         }).then(function () {

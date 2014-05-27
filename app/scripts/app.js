@@ -12,7 +12,8 @@ angular.module('rememoirApp', ['ngRoute', 'firebase', 'ui.bootstrap'])
         controller: 'CreateUserCtrl'
       })
       .when('/forget-password', {
-        templateUrl: 'views/forget-password-page.html',
+        templateUrl: 'views/forget-password.html',
+        controller: 'ForgetPasswordCtrl'
       })
       .when('/home', {
         templateUrl: 'views/home.html',

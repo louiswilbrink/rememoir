@@ -1,23 +1,12 @@
 <div class="delete-account-background">
-  <div class="delete-account-container">
-    <div class="panel panel-primary">
-      <div class="panel-body">
-        <h2 class="delete-title">Are you sure you want to delete your account?</h2>
-        <p>{{ status }}</p>
-        <form class="form-horizontal" role="form">
-          <div class="centered">
-            <input type="email" class="rem-field form-control" id="inputEmail3" ng-model="deleteAccount.email" placeholder="Email">
-        </div>
-        <div class="centered">
-          <input type="password" class="rem-field form-control" id="inputPassword3" ng-model="deleteAccount.password" placeholder="Password">
-          <div class="centered">
-              <span><button type="submit" class="rem-field btn btn-danger" ng-click="deleteAccount.deleteAccount()">Delete Account</button></span>
-          </div>
-          <div class="centered">
-            <a ng-click="deleteAccount.navigateTo('/home')">No Thanks, take me back</a>
-          </div>
-        </form>
-      </div>
-    </div>
+  <div class="rem-form-container centered">
+    <h2>Are you sure you want to delete your account?</h2>
+    <p class="form-status">{{ deleteAccount.status }}</p>
+    <form class="form-horizontal" role="form">
+        <input type="email" class="rem-field form-control rem-box-shadow-light" id="inputEmail3" ng-model="deleteAccount.email" placeholder="Email">
+        <input type="password" class="rem-field form-control rem-box-shadow-light" id="inputPassword3" ng-model="deleteAccount.password" placeholder="Password">
+        <button type="submit" class="rem-field btn btn-danger rem-box-shadow-light rem-button" ng-click="deleteAccount.deleteAccount()">Delete Account</button>
+        <a class="login-link" ng-click="deleteAccount.navigateTo('/home')">No Thanks, take me back</a>
+    </form>
   </div>
 </div>

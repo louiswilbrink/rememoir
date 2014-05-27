@@ -17,7 +17,8 @@ angular.module('rememoirApp')
         '#e46764', '#f47d44', '#ceb48d',
         '#7f7ea8', '#752864', '#006bb6',
         '#46866f'],
-
+        //['#67C5ED', '#39A1CE', '#35BEFA'],
+    
       // Methods.
       
       addEntry: function () {
