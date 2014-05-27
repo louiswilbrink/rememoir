@@ -1,27 +1,15 @@
 <div class="login-background">
-  <div class="rem-form-container">
-    <div class="panel">
-      <div class="panel-body">
-        <div class="panel-logo">
-          <img ng-src="images/logo.png" alt="rememoir logo">
-        </div>
-        <div class="form-status">{{ login.status }}</div>
-        <form class="form-horizontal" role="form">
-          <div class="centered">
-            <input type="email" class="rem-field form-control" id="inputEmail3" ng-model="login.email" placeholder="Email">
-        </div>
-        <div class="centered">
-          <input type="password" class="rem-field form-control" id="inputPassword3" ng-model="login.password" placeholder="Password">
-          <div class="centered">
-              <span><button type="submit" class="rem-field btn btn-primary" ng-click="login.signIn()">Sign in</button></span>
-          </div>
-          <div class="centered">
-            <span><p ng-click="login.onForgetPasswordClicked()"><a>Forgot Password?</a></p></span>
-            <span><p ng-click="login.navigateTo('/create-user')"><a>Not a member? Sign up today.</a></p></span>
-          </div>
-        </form>
+  <div class="rem-form-container centered">
+    <h1>Rememoir</h1>
+    <div class="form-status">{{ login.status }}</div>
+    <form class="form-horizontal" role="form">
+      <div class="centered">
+        <input type="email" class="rem-field form-control rem-box-shadow-light" id="inputEmail3" ng-model="login.email" placeholder="Email">
+        <input type="password" class="rem-field form-control rem-box-shadow-light" id="inputPassword3" ng-model="login.password" placeholder="Password">
+        <button type="submit" class="rem-field sign-in-button btn btn-primary rem-box-shadow-light" ng-click="login.signIn()">Sign in</button>
+        <a class="login-link" ng-click="login.onForgetPasswordClicked()">Forgot Password?</a>
+        <a class="login-link" ng-click="login.navigateTo('/create-user')">Not a member? Sign up today.</a>
       </div>
-    </div>
+    </form>
   </div>
-  <button class="about-us">What is Rememoir?</button>
 </div>

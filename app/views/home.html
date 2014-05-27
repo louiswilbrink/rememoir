@@ -12,11 +12,11 @@
     </div>
     <!-- Entries -->
     <ul class="list-group">
-      <!-- 'barrel_bottom' keeps the entries reference populated. -->
+      <!-- 'barrel_bottom' keeps the entries reference populated with at least one dummy entry. -->
       <!-- If the user deletes all of their entries, the entries reference will be removed from the firebase and cause errors when $firebase attempts to refer to it. -->
       <li class="list-group-item rem-list-group-item rem-box-shadow"
-        ng-class="{ 'hidden' : entry.date === undefined }"
-        ng-repeat="(key, entry) in home.entries | orderObjectBy:'date':true"
+        ng-class="{ 'hidden' : entry.memory === 'barrel_bottom' }"
+        ng-repeat="(key, entry) in home.entries | orderObjectBy : 'date' : true"
         ng-style="{ 'background-color' : home.colorPallete[$index % home.colorPallete.length] }">
         <!-- entries is an object that is converted into and array and sorted by reverse date using the orderObjectBy filter. During conversion, the keys are nested inside the object. -->
         <span class="glyphicon glyphicon-remove pull-right" ng-click="home.removeEntry(entry.key)"></span>

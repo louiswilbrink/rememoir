@@ -16,14 +16,29 @@ p {
 
 a {
   cursor: pointer;
+  font-family: FiraSans, Courier, monospace;
+  font-weight: 100;
+  font-size: 1em;
+}
+
+.sign-in-button {
+  font-family: FiraSans, Courier, monospace;
+  font-weight: 100;
+  font-size: 1em;
+  line-height: 1em;
 }
 
 .login-background {
-  background-image: url("http://162.243.103.157/assets/building.jpg");
+  background-image: url("http://162.243.103.157/assets/backgrounds/whitey.png");
   background-position: center;
-  background-size: 100% auto;
+  background-size: auto;
   padding-top: 60px;
   height: 100vh;
+}
+
+.login-link {
+  display: block;
+  margin-bottom: 10px;
 }
 
 .form-status {
@@ -56,6 +71,10 @@ a {
   text-align: center;
 }
 
+.blocked {
+  display: block;
+}
+
 .rem-field {
   text-align: center;
   margin-left: auto;
@@ -72,7 +91,7 @@ a {
 }
 
 .delete-account-background {
-  background-image: url("http://162.243.103.157/assets/landscape.jpg");
+  background-image: url("http://162.243.103.157/assets/backgrounds/whitey.png");
   height: 100vh;
   width: 100vw;
   padding: 15vh;
@@ -90,66 +109,6 @@ a {
   margin-bottom: 20px;
 }
 
-.about-us {
-  -webkit-appearance: none;
-  -webkit-background-clip: border-box;
-  -webkit-background-origin: padding-box;
-  -webkit-background-size: auto;
-  -webkit-box-shadow: rgba(0, 0, 0, 0.0980392) 0px 3px 0px 0px;
-  -webkit-user-select: none;
-  -webkit-writing-mode: horizontal-tb;
-  align-items: flex-start;
-  background-attachment: scroll;
-  background-clip: border-box;
-  background-color: rgb(255, 255, 255);
-  background-image: none;
-  background-origin: padding-box;
-  background-size: auto;
-  border-bottom-color: rgb(170, 170, 170);
-  border-bottom-style: none;
-  border-bottom-width: 0px;
-  border-image-outset: 0px;
-  border-image-repeat: stretch;
-  border-image-slice: 100%;
-  border-image-source: none;
-  border-image-width: 1;
-  border-left-color: rgb(170, 170, 170);
-  border-left-style: none;
-  border-left-width: 0px;
-  border-right-color: rgb(170, 170, 170);
-  border-right-style: none;
-  border-right-width: 0px;
-  border-top-color: rgb(170, 170, 170);
-  border-top-style: none;
-  border-top-width: 0px;
-  box-shadow: rgba(0, 0, 0, 0.0980392) 0px 3px 0px 0px;
-  box-sizing: border-box;
-  color: rgb(170, 170, 170);
-  cursor: pointer;
-  display: block;
-  font-family: Lato, Calibri, Arial, sans-serif;
-  font-size: 13px;
-  font-weight: bold;
-  height: 50px;
-  letter-spacing: 1px;
-  line-height: 50px;
-  margin-bottom: 20px;
-  margin-left: 0px;
-  margin-right: 0px;
-  margin-top: 10px;
-  padding-bottom: 0px;
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-top: 0px;
-  text-align: center;
-  text-indent: 0px;
-  text-shadow: none;
-  text-transform: uppercase;
-  width: 350px;
-  word-spacing: 0px;
-  writing-mode: lr-tb;
-}
-
 .home-background {
   background-image: url("http://162.243.103.157/assets/backgrounds/whitey.png");
   min-height: 100vh;
@@ -162,6 +121,12 @@ a {
 
 .rem-list-group-item {
   margin-bottom: 20px;
+}
+
+.rem-box-shadow-light {
+  -webkit-box-shadow: 10px 10px 15px -10px rgba(0,0,0,0.89);
+  -moz-box-shadow: 10px 10px 15px -10px rgba(0,0,0,0.89);
+  box-shadow: 10px 10px 15px -10px rgba(0,0,0,0.89);
 }
 
 .rem-box-shadow {

@@ -94,10 +94,17 @@ angular.module('rememoirApp')
             // Create a new user object using the SimpleLogin id as the key.
             var newUser = {};
 
+            // Each user will start with a single journal entry that will always be hidden.
+            // This is necessary because writing to a non-existent object in firebase will
+            // cause errors.
             newUser[user.id] = {
               email: user.email,
               entries: {
-                barrel_bottom: 'avoids emptying the entries reference completely'
+                barrel_bottom: {
+                  memory: 'barrel_bottom',
+                  date: 100,
+                  isPickMeUp: false
+                }
               }
             };
            
