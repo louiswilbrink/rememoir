@@ -9,6 +9,8 @@ angular.module('rememoirApp')
       // Model.
       
       email: '',
+      
+      status: 'Enter your email address and we\'ll send you a temporary password',
 
       // API.
       
@@ -22,4 +24,10 @@ angular.module('rememoirApp')
         RemIO.resetPassword($scope.forgetPassword.email);
       }
     };
+
+    $scope.$on('ResetPasswordSuccess', function () {
+      $scope.$apply(function () {
+        $scope.forgetPassword.status = 'An reset email is on it\'s way';
+      });
+    });
   }]);

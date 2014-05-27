@@ -1,18 +1,35 @@
 'use strict';
 
 angular.module('rememoirApp')
-  .controller('CreateUserCtrl', ['$scope', 'RemIO', function ($scope, RemIO) {
+  .controller('CreateUserCtrl', ['$scope', '$location', 'RemIO', function ($scope, $location, RemIO) {
 
     $scope.createUser = {
+
+      // Model.
+
       email: '',
+
       password: '',
+
       status: {
-        text: 'Sign up with just an email and password!',
+        text: 'Sign up with just an email and password',
         isError: false
       },
+
+      // API.
       
+      navigateTo: function (path) {
+
+        $location.path(path);
+      },
+
       signUp: function () {
+
+        var _this = this;
+
         if (!$scope.createUser.email) {
+          _this.status.text = 'Please enter an email address';
+          _this.status.isError = true;
           $scope.createUser.email = $scope.createUser.password = '';
         }
         else {

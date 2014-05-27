@@ -52,6 +52,7 @@ angular.module('rememoirApp')
         auth.sendPasswordResetEmail(email, function(error, success) {
           if (!error) {
             console.log('Password reset email sent successfully');
+            $rootScope.$broadcast('ResetPasswordSuccess');
           }
         });
       },

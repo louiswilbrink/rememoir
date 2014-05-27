@@ -61,13 +61,6 @@ a {
   margin-top: 15px;
 }
 
-.rem-form-container {
-  max-width: 350px;
-  width: 45%;
-  margin-left: auto;
-  margin-right: auto;
-}
-
 .centered {
   text-align: center;
 }
@@ -136,6 +129,35 @@ a {
   box-shadow: 10px 10px 65px -10px rgba(0,0,0,0.89);
 }
 
+.rem-form-container {
+  max-width: 350px;
+  width: 45%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* iPad 1/2/3/4/Mini | portrait */
+@media screen and (max-width: 768px) {
+
+  .rem-form-container {
+    width: 80%;
+  }
+} /* -------- 768px ---------- */
+
+/* iPhone 4/4S/5/5S | portrait */
+@media screen and (max-width: 320px) {
+
+  .rem-form-container {
+    width: 90%;
+  }
+} /* end of (min-width: 320px) */
+
+
+
+
+
+/* These are the supported CSS Media Queries.  Keep classes that have multiple definitions together. */
+
 /* Huge Desktop */
 @media screen and (min-width: 1200px) {
 
@@ -154,9 +176,6 @@ a {
 /* iPad 1/2/3/4/Mini | portrait */
 @media screen and (max-width: 768px) {
 
-  .login {
-    width: 80%;
-  }
 } /* -------- 768px ---------- */
 
 /* iPhone 5/5S | landscape */
@@ -172,7 +191,4 @@ a {
 /* iPhone 4/4S/5/5S | portrait */
 @media screen and (max-width: 320px) {
 
-  .login {
-    width: 90%;
-  }
 } /* end of (min-width: 320px) */

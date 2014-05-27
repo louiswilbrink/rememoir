@@ -1,6 +1,7 @@
 <div class="home-background">
   <div class="container">
     <rmmr-header></rmmr-header>
+    <change-password ng-show="changePassword.isTemporaryPassword"></change-password>
     <!-- New Entry -->
     <div class="clearfix entry-form">
       <!-- Default panel contents -->
@@ -25,6 +26,5 @@
         <p class="memory">{{ entry.memory }}</p>
       </li>
     </ul>
-    <change-password ng-show="changePassword.isTemporaryPassword"></change-password>
   </div>
 </div>
